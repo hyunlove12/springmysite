@@ -1,10 +1,9 @@
-package com.bigdata2019.mysite.service;
+package com.bigdata2019.mysite.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
-import com.bigdata2019.mysite.repository.UserDao;
+import com.bigdata2019.mysite.user.repository.UserDao;
 
 @Service
 public class UserService {

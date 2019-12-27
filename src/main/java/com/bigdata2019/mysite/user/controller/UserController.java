@@ -1,4 +1,4 @@
-package com.bigdata2019.mysite.controller;
+package com.bigdata2019.mysite.user.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bigdata2019.mysite.service.UserService;
-import com.bigdata2019.mysite.service.UserVo;
+import com.bigdata2019.mysite.user.service.UserService;
+import com.bigdata2019.mysite.user.service.UserVo;
 
 @RequestMapping("/user")
 @Controller

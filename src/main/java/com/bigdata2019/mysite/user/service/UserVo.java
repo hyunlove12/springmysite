@@ -1,4 +1,4 @@
-package com.bigdata2019.mysite.service;
+package com.bigdata2019.mysite.user.service;
 
 public class UserVo {
 	private Long no;

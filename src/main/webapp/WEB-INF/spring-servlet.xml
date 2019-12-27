@@ -13,7 +13,7 @@
           
     <!-- front단 설정 // applicationcontext 설정을 상속-->                      
 	<context:annotation-config />
-	<context:component-scan base-package="com.bigdata2019.mysite.controller" />
+	<context:component-scan base-package="com.bigdata2019.mysite.*.controller" />
 
 	<!-- 웹과 관련되 부분이기 때문에 spring-servlet에 설정 -->
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->

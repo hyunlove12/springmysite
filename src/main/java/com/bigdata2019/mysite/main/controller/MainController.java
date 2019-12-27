@@ -1,4 +1,4 @@
-package com.bigdata2019.mysite.controller;
+package com.bigdata2019.mysite.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -15,8 +15,9 @@
 	<!-- 비즈니스 로직 설정 // root 설정이 된다. -->
 	
 	<context:annotation-config />
+	<!-- com.bigdata2019.mysite.repository,com.bigdata2019.mysite.service -->
 	<!-- 어노테이션을 지정 -->
-	<context:component-scan	base-package="com.bigdata2019.mysite.repository,com.bigdata2019.mysite.service">
+	<context:component-scan	base-package="com.bigdata2019.mysite.**.*">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
