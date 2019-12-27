@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,5 +94,44 @@ public class UserController {
 		//스프링은 interceptor로 처리해야. -> 임시 session으로 처리
 		session.setAttribute("authUser", userVo);
 		return "redirect:/";
+	}
+	
+	/**
+	 * <pre>
+	 * <b>로그아웃</b>	  
+	 * </pre>	 *
+	 * @author 안동현 by bit
+	 * @version 1.0, 20191227 소스 수정
+	 * @see    None
+	 */
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		if(authUser != null) {
+			//로그아웃 처리
+			session.removeAttribute("authUser");
+			session.invalidate();			
+		}
+		return "redirect:/";
+	}
+	
+	/**
+	 * <pre>
+	 * <b>회원정보 업데이트</b>	  
+	 * </pre>	 *
+	 * @author 안동현 by bit
+	 * @version 1.0, 20191227 소스 수정
+	 * @see    None
+	 */
+	@RequestMapping(value="/update", method=RequestMethod.GET)
+	public String update(HttpSession session, Model model) {
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		if(authUser == null) {
+			return "redirect:/";
+		}
+		Long no = authUser.getNo();
+		UserVo userVo = userService.getUser(no);
+		model.addAttribute("userVO", userVo);
+		return "user/update";
 	}
 }
