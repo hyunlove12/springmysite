@@ -27,7 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		vo.setPassword(password);
 		
 		//interceptor도 spring안에 생성되기 때문에 di가능
-		UserVo authUser = userService.getUser(email, password);
+		UserVo authUser = userService.getUser(vo);
 		if(authUser == null) {
 			response.sendRedirect(request.getContextPath() + "/user/login?result=fail");
 			return false;

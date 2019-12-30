@@ -1,7 +1,5 @@
 package com.bigdata2019.mysite.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bigdata2019.mysite.service.UserService;
 import com.bigdata2019.mysite.service.UserVo;
 import com.bigdata2019.security.Auth;
+import com.bigdata2019.security.AuthUser;
 
 @RequestMapping("/user")
 @Controller
@@ -112,7 +111,8 @@ public class UserController {
 	
 	/**
 	 * <pre>
-	 * <b>회원정보 업데이트</b>	  
+	 * <b>회원정보 업데이트</b>
+	 * <b>AuthUserHandlerMethodArgumentResolver에서 http세션 처리</b>	  
 	 * </pre>	 
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
@@ -120,13 +120,11 @@ public class UserController {
 	 */
 	@Auth(value="USER")
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update(HttpSession session, Model model) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		Long no = authUser.getNo();
+	public String update(@AuthUser UserVo authuser, Model model) {
+		
+		Long no = authuser.getNo();
 		UserVo userVo = userService.getUser(no);
+		
 		model.addAttribute("userVO", userVo);
 		return "user/update";
 	}

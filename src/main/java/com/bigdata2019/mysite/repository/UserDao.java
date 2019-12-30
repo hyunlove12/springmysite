@@ -1,11 +1,7 @@
 package com.bigdata2019.mysite.repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bigdata2019.mysite.service.UserVo;
@@ -13,155 +9,57 @@ import com.bigdata2019.mysite.service.UserVo;
 @Repository
 public class UserDao {
 	
+	@Autowired
+	private SqlSession sqlSession;
+	
+	/*
+	 * @Autowired private DataSource dataSource;
+	 */
+	
+	/**
+	 * <pre>
+	 * <b> 회원 검색 - no이용 </b>	  	  
+	 * </pre>	 
+	 * @param no
+	 * @return
+	 */	
 	public UserVo find(Long no){
-		UserVo result = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnection();
-			
-			String sql = 
-				"select no, name, email, gender" + 
-				"  from user" + 
-				" where no=?";
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setLong(1, no);
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				result = new UserVo();
-				result.setNo(rs.getLong(1));
-				result.setName(rs.getString(2));
-				result.setEmail(rs.getString(3));
-				result.setGender(rs.getString(4));
-			}
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 클래스 로딩 실패:" + e);
-		} catch (SQLException e) {
-			System.out.println("에러:" + e);
-		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	
-		return result;
+		return sqlSession.selectOne("user.findByNo", no);		
 	}
 	
-	public UserVo find(String email, String password){
-		UserVo result = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnection();
-			
-			String sql = 
-				"select no, name" + 
-				"  from user" + 
-				" where email=?" + 
-				"   and pw=?";
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, email);
-			pstmt.setString(2, password);
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				result = new UserVo();
-				result.setNo(rs.getLong(1));
-				result.setName(rs.getString(2));
-			}
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 클래스 로딩 실패:" + e);
-		} catch (SQLException e) {
-			System.out.println("에러:" + e);
-		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	
-		return result;
+	/**
+	 * <pre>
+	 * <b> 회원 검색 - email, password 이용</b>	  	  
+	 * </pre>	 
+	 * @param UserVo
+	 * @return
+	 */
+	public UserVo find(UserVo vo){	
+		//namaspace.id값
+		return sqlSession.selectOne("user.findByEmailAndPassword", vo);		
 	}
 	
+	/**
+	 * <pre>
+	 * <b> 회원 가입 </b>	  	  
+	 * </pre>	 
+	 * @param UserVo
+	 * @return
+	 */
 	public Boolean insert(UserVo vo) {
-		Boolean result = false;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			conn = getConnection();
-	
-			//SQL 준비
-			String sql = 
-				" insert" + 
-				"   into user" + 
-				" values (null, ?, ?, ?, ?)";
-					
-			pstmt = conn.prepareStatement(sql);			
-		
-			//값 바인딩
-			pstmt.setString(1, vo.getGender());
-			pstmt.setString(2, vo.getName());
-			pstmt.setString(3, vo.getEmail());
-			pstmt.setString(4, vo.getPassword());
-			
-			//쿼리 실행
-			int count = pstmt.executeUpdate();
-			result = (count == 1);
-			
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
+		//namaspace.id값
+		int count = sqlSession.insert("user.insert", vo);
+		return count == 1;
 	}
 	
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		//1. JDBC Driver(Mysql) 로딩
-		Class.forName("com.mysql.jdbc.Driver");
-		
-		//2. 연결하기
-		String url = "jdbc:mysql://localhost:3306/webdb";
-		Connection conn = DriverManager.getConnection(url, "webdb", "webdb");
-		
-		return conn;
-	}	
+	    /*  
+		 * private Connection getConnection() throws ClassNotFoundException,
+		 * SQLException { //1. JDBC Driver(Mysql) 로딩
+		 * Class.forName("com.mysql.jdbc.Driver");
+		 * 
+		 * //2. 연결하기 String url = "jdbc:mysql://localhost:3306/webdb"; Connection conn =
+		 * DriverManager.getConnection(url, "webdb", "webdb");
+		 * 
+		 * return conn; }
+		 */
 }
