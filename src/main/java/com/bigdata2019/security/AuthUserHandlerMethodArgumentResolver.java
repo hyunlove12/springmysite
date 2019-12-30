@@ -13,7 +13,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import com.bigdata2019.mysite.service.UserVo;
 
 public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
-
+	
+	/*
+	 * HandlerMethodArgumentResolver -> 모든 호출에 dispacthcerservlet에 의하여 호출된 후 처리
+	 * */	
+	
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
 		//파라미터 정보가 넘어온다
