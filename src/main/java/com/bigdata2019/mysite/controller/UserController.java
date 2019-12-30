@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bigdata2019.mysite.service.UserService;
 import com.bigdata2019.mysite.service.UserVo;
+import com.bigdata2019.security.Auth;
 
 @RequestMapping("/user")
 @Controller
@@ -118,7 +118,7 @@ public class UserController {
 	 * @version 1.0, 20191227 소스 수정
 	 * @see    None
 	 */
-	@Auth
+	@Auth(value="USER")
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(HttpSession session, Model model) {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
