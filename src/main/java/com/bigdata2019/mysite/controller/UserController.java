@@ -36,7 +36,7 @@ public class UserController {
 	 * <pre>
 	 * <b>회원가입 로직 실행</b>
 	 * 동일한 join메소드 -> get,post로 구분	  
-	 * </pre>	 *
+	 * </pre>	 
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
 	 * @see    None
@@ -50,7 +50,7 @@ public class UserController {
 	/**
 	 * <pre>
 	 * <b>회원가입 성공</b>	  
-	 * </pre>	 *
+	 * </pre>	 
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
 	 * @see    None
@@ -63,7 +63,7 @@ public class UserController {
 	/**
 	 * <pre>
 	 * <b>로그인 폼</b>	  
-	 * </pre>	 *
+	 * </pre>	 
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
 	 * @see    None
@@ -75,54 +75,50 @@ public class UserController {
 	
 	/**
 	 * <pre>
-	 * <b>로그인 처리</b>	  
-	 * </pre>	 *
+	 * <b>로그인 처리 - interceptor 사용</b>	  
+	 * </pre>	 
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
 	 * @see    None
 	 */
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(HttpSession session,
-					    @RequestParam(value="eamail", required=true, defaultValue="") String email, 
-					    @RequestParam(value="password", required=true, defaultValue="") String password) {		
-		UserVo userVo = userService.getUser(email, password);
-		//로그인 실패 시 login화면으로 redirect
-		if(userVo == null) {
-			return "redirect:/user/login?result=fail";
-		}
-		//인증 처리
-		//스프링은 interceptor로 처리해야. -> 임시 session으로 처리
-		session.setAttribute("authUser", userVo);
-		return "redirect:/";
-	}
+	/*
+	 * @RequestMapping(value="/login", method=RequestMethod.POST) public String
+	 * login(HttpSession session,
+	 * 
+	 * @RequestParam(value="eamail", required=true, defaultValue="") String email,
+	 * 
+	 * @RequestParam(value="password", required=true, defaultValue="") String
+	 * password) { UserVo userVo = userService.getUser(email, password); //로그인 실패 시
+	 * login화면으로 redirect if(userVo == null) { return
+	 * "redirect:/user/login?result=fail"; } //인증 처리 //스프링은 interceptor로 처리해야. -> 임시
+	 * session으로 처리 session.setAttribute("authUser", userVo); return "redirect:/"; }
+	 */
 	
 	/**
 	 * <pre>
-	 * <b>로그아웃</b>	  
-	 * </pre>	 *
+	 * <b>로그아웃 - interceptor처리 </b>	  
+	 * </pre>	 
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
 	 * @see    None
 	 */
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public String logout(HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser != null) {
-			//로그아웃 처리
-			session.removeAttribute("authUser");
-			session.invalidate();			
-		}
-		return "redirect:/";
-	}
+	/*
+	 * @RequestMapping(value="/logout", method=RequestMethod.GET) public String
+	 * logout(HttpSession session) { UserVo authUser =
+	 * (UserVo)session.getAttribute("authUser"); if(authUser != null) { //로그아웃 처리
+	 * session.removeAttribute("authUser"); session.invalidate(); } return
+	 * "redirect:/"; }
+	 */
 	
 	/**
 	 * <pre>
 	 * <b>회원정보 업데이트</b>	  
-	 * </pre>	 *
+	 * </pre>	 
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
 	 * @see    None
 	 */
+	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(HttpSession session, Model model) {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
