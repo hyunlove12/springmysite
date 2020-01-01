@@ -85,7 +85,10 @@ public class UserController {
 	public String login(HttpSession session,
 					    @RequestParam(value="eamail", required=true, defaultValue="") String email, 
 					    @RequestParam(value="password", required=true, defaultValue="") String password) {		
-		UserVo userVo = userService.getUser(email, password);
+		UserVo vo = new UserVo();
+		vo.setEmail(email);
+		vo.setPassword(password);
+		UserVo userVo = userService.getUser(vo);
 		//로그인 실패 시 login화면으로 redirect
 		if(userVo == null) {
 			return "redirect:/user/login?result=fail";
