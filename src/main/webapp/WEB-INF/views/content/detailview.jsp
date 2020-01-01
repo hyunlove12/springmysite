@@ -20,11 +20,19 @@
 		<script src="/js/skel.min.js"></script>
 		<script src="/js/skel-panels.min.js"></script>
 		<script src="/js/init.js"></script>
-		<noscript>
+		
+		<link href="${pageContext.request.contextPath}/css/skel-noscript.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath}/css/style-desktop.css" rel="stylesheet" type="text/css">
+		
+		<!-- noscript확인해서 경로 수정  -->
+		<!-- <noscript>
 			<link rel="stylesheet" href="/css/skel-noscript.css" />
 			<link rel="stylesheet" href="/css/style.css" />
 			<link rel="stylesheet" href="/css/style-desktop.css" />
-		</noscript>
+		</noscript> -->
+		
+		
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
 	</head>

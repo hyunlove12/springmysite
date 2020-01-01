@@ -41,7 +41,7 @@
 
 					<div class="3u">
 						<section>
-							<a href="${pageContext.request.contextPath}|detailview" class="image full"><img src="images/pics02.jpg" alt=""></a>
+							<a href="${pageContext.request.contextPath }/content/detailview/1"  class="image full"><img src="images/pics02.jpg" alt=""></a>
 							<header>
 								<h2>Etiam posuere</h2>
 							</header>

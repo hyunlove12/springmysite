@@ -29,8 +29,12 @@
 	<!-- 웹과 관련되 부분이기 때문에 spring-servlet에 설정 -->
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
 	<mvc:annotation-driven />
+	<mvc:resources mapping="/js/**" location="/js/" />
+    <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/images/**" location="/images/" />
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
-	<mvc:default-servlet-handler/>
+	<mvc:default-servlet-handler />
+    
 
 	<!-- ViewResolver 설정 // setViewclass-->	
 	<bean id= "viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
