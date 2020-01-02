@@ -11,31 +11,7 @@
 <html>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 	<body>
-
-		<!-- Header -->
-		<div id="header">
-			<div class="container">
-				
-				<!-- Logo -->
-				<div id="logo">
-					<h1><a href="#">Autonomy</a></h1>
-				</div>
-				
-				<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html">Homepage</a></li>
-						<li class="active"><a href="twocolumn1.html">Left Sidebar</a></li>
-						<li><a href="twocolumn2.html">Right Sidebar</a></li>
-						<li><a href="onecolumn.html">No Sidebar</a></li>
-					</ul>
-				</nav>
-
-			</div>
-		</div>
-		<!-- Header -->
-
-		<div id="banner">&nbsp;</div>
+		<!-- <div id="banner">&nbsp;</div> -->
 
 		<div id="featured">
 			<div class="container">
@@ -93,13 +69,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Copyright -->
-		<div id="copyright">
-			<div class="container">
-				Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
-			</div>
-		</div>
-
+		<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 	</body>
 </html>

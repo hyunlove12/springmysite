@@ -32,3 +32,24 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
 </head>
+<!-- Header -->
+		<div id="header">
+			<div class="container">
+
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="${pageContext.request.contextPath }/index">글장난!</a></h1>
+				</div>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>						
+						<li><a href="${pageContext.request.contextPath }/content/qelist">맞추기</a></li>
+						<li><a href="twocolumn2.html">자랑하기</a></li>
+						<li><a href="onecolumn.html">로그인</a></li>
+						<li><a href="onecolumn.html">회원가입</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
