@@ -15,9 +15,23 @@ public class ContentController {
 
 	@Autowired
 	private UserService userService;
+	
 	/**
 	 * <pre>
-	 * <b>작품 자세히 보기</b>	  
+	 * <b>맞추기 리스트 보기</b>	  
+	 * </pre>	 *
+	 * @author 안동현 by bit
+	 * @version 1.0, 20191227 소스 수정
+	 * @see    None
+	 */
+	@RequestMapping(value="/qelist", method=RequestMethod.GET)
+	public String list() {
+		return "content/qelist";
+	}
+	
+	/**
+	 * <pre>
+	 * <b>맞추기 사진 자세히 보기</b>	  
 	 * </pre>	 *
 	 * @author 안동현 by bit
 	 * @version 1.0, 20191227 소스 수정
@@ -26,6 +40,19 @@ public class ContentController {
 	@RequestMapping(value="/detailview/{no}", method=RequestMethod.GET)
 	public String detailview(@PathVariable("no") String no) {
 		return "content/detailview";
+	}
+	
+	/**
+	 * <pre>
+	 * <b>맞추기 게임 쓰기</b>	  
+	 * </pre>	 *
+	 * @author 안동현 by bit
+	 * @version 1.0, 20191227 소스 수정
+	 * @see    None
+	 */
+	@RequestMapping(value="/write", method=RequestMethod.GET)
+	public String write() {
+		return "content/writecontent";
 	}
 	
 	/**
