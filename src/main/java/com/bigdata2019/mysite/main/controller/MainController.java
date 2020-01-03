@@ -9,6 +9,7 @@ public class MainController {
 	//브런치 테스트
 	@RequestMapping({"/", "/index", "/main"})	
 	public String main() {
+		//restcontroller로 선언하면 viewresolver를 타지 않는다.
 		return "main/index";
 	}
 

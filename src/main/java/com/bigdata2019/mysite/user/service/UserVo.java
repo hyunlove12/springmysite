@@ -1,6 +1,16 @@
 package com.bigdata2019.mysite.user.service;
 
-public class UserVo {
+import java.io.Serializable;
+
+public class UserVo implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4360923877494675644L;
+	
+	
 	private Long no;
 	private String name;
 	private String email;
