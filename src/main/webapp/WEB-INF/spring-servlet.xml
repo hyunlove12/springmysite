@@ -13,7 +13,8 @@
           
     <!-- front단 설정 // applicationcontext 설정을 상속-->                      
 	<context:annotation-config />
-	<context:component-scan base-package="com.bigdata2019.mysite.*.controller" />
+	<context:component-scan base-package="com.**.*" />
+	
 
 	<!-- 웹과 관련되 부분이기 때문에 spring-servlet에 설정 -->
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
@@ -71,11 +72,11 @@
 		</mvc:interceptor>
 	</mvc:interceptors>	
 	
-	<!-- <alias name="spring.RegularCommonsMultipartResolver" alias="multipartResolver" />
-    <bean id="spring.RegularCommonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- <alias name="spring.RegularCommonsMultipartResolver" alias="multipartResolver" /> -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     	<property name="defaultEncoding" value="UTF-8"/>
-        <property name="maxUploadSize"   value="104857600" />
+        <property name="maxUploadSize"   value="104857600" /> 
         <property name="maxInMemorySize" value="200000000" />
-    </bean> -->
+    </bean> 
     
 </beans>

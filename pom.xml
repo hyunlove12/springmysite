@@ -80,6 +80,18 @@
 		    <version>1.2</version>
 		</dependency>	
 		
+		<!-- File Upload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.2.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		
 	</dependencies>
 
 	<!-- 서버에서 빌드할 때 필요 -->
@@ -89,6 +101,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
+					<sourceEncoding>utf-8</sourceEncoding>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>

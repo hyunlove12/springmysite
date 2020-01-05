@@ -13,7 +13,7 @@
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
                         <h3>Services</h3>
-                        <p><a href="${pageContext.request.contextPath }/index">Home</a> / Services</p>
+                        <p><a href="${pageContext.request.contextPath }/content/write">글쓰기</a></p>
                     </div>
                 </div>
             </div>
